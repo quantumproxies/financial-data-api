@@ -1,0 +1,45 @@
+{
+ "run_id": "cmvksn5wr0uc941o5ty39vd48",
+ "slug": "exchange_rates",
+ "version": "1.1.0",
+ "status": "done",
+ "input": {
+  "base": "EUR",
+  "symbols": [
+   "USD",
+   "GBP",
+   "JPY"
+  ],
+  "max_results": 3
+ },
+ "count": 3,
+ "partial": false,
+ "finished_at": "2026-10-23T09:54:56.146Z",
+ "results": [
+  {
+   "base": "EUR",
+   "date": "2026-10-22",
+   "rank": 1,
+   "rate": 0.8377,
+   "currency": "GBP",
+   "inverse_rate": 1.19374
+  },
+  {
+   "base": "EUR",
+   "date": "2026-10-22",
+   "rank": 2,
+   "rate": 175.97,
+   "currency": "JPY",
+   "inverse_rate": 0.00568279
+  },
+  {
+   "base": "EUR",
+   "date": "2026-10-22",
+   "rank": 3,
+   "rate": 1.1205,
+   "currency": "USD",
+   "inverse_rate": 0.892459
+  }
+ ],
+ "_note": "Real run of 2026-10-23 (latest reference rates, dated 2026-10-22); all three rows kept as delivered."
+}

@@ -1,0 +1,51 @@
+{
+ "run_id": "cmvksn62p0ucb41o5kdxb199h",
+ "slug": "gleif_lei",
+ "version": "1.1.0",
+ "status": "done",
+ "input": {
+  "query": "Apple Inc",
+  "max_results": 2
+ },
+ "count": 2,
+ "partial": false,
+ "finished_at": "2026-10-23T09:54:56.572Z",
+ "results": [
+  {
+   "bic": [
+    "APLEUS66XXX"
+   ],
+   "lei": "HWUPKR0MPOU8FGXBT394",
+   "url": "https://search.gleif.org/#/record/HWUPKR0MPOU8FGXBT394",
+   "rank": 1,
+   "status": "ACTIVE",
+   "hq_city": "Cupertino",
+   "category": "GENERAL",
+   "hq_address": "One Apple Park Way, 95014, Cupertino, US-CA, US",
+   "hq_country": "US",
+   "legal_city": "Glendale",
+   "legal_form": "H1UM",
+   "legal_name": "Apple Inc.",
+   "last_update": "2026-03-03T16:34:33Z",
+   "other_names": [
+    "Apple Computer, Inc."
+   ],
+   "jurisdiction": "US-CA",
+   "legal_region": "US-CA",
+   "managing_lou": "5493001KJTIIGC8Y1R12",
+   "next_renewal": "2027-03-08T17:27:20Z",
+   "legal_address": "C/O C T Corporation System, 330 N. Brand Blvd, Suite 700, 91203, Glendale, US-CA, US",
+   "legal_country": "US",
+   "registered_as": "806592",
+   "entity_created": "1977-01-03T00:00:00Z",
+   "conformity_flag": "CONFORMING",
+   "legal_form_other": null,
+   "legal_postal_code": "91203",
+   "corroboration_level": "FULLY_CORROBORATED",
+   "registration_status": "ISSUED",
+   "initial_registration": "2012-06-06T15:53:00Z",
+   "registration_authority": "RA000598"
+  }
+ ],
+ "_note": "Real run of 2026-10-23 (24 entities matched the name); the first of the two delivered rows is kept, as delivered."
+}

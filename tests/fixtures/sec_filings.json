@@ -1,0 +1,38 @@
+{
+ "run_id": "cmvksn6f20ucd41o58s002wvi",
+ "slug": "sec_filings",
+ "version": "1.1.0",
+ "status": "done",
+ "input": {
+  "query": "artificial intelligence risk factors",
+  "forms": "10-K",
+  "max_results": 2
+ },
+ "count": 2,
+ "partial": false,
+ "finished_at": "2026-10-23T09:54:56.993Z",
+ "results": [
+  {
+   "cik": "1594968",
+   "sic": "7900",
+   "url": "https://www.sec.gov/Archives/edgar/data/1594968/000168316826002984/loan_i10k-123125.htm",
+   "form": "10-K",
+   "rank": 2,
+   "items": [],
+   "state": null,
+   "ticker": "LAAI",
+   "company": "Loan Artificial Intelligence Corp.  (LAAI, VEST)  (CIK 0001594968)",
+   "location": "Admiralty",
+   "accession": "0001683168-26-002984",
+   "file_type": "10-K",
+   "inc_state": "FL",
+   "index_url": "https://www.sec.gov/Archives/edgar/data/1594968/000168316826002984/0001683168-26-002984-index.htm",
+   "filed_date": "2026-04-15",
+   "description": "FORM 10-K FOR DEC 2025",
+   "file_number": "000-56529",
+   "report_date": "2025-12-31",
+   "company_name": "Loan Artificial Intelligence Corp."
+  }
+ ],
+ "_note": "Real run of 2026-10-23 in full-text search mode; one of the two delivered filings is kept (rank 2), as delivered."
+}

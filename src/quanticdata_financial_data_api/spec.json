@@ -1,0 +1,337 @@
+{
+ "cli": "financial-data",
+ "name": "Financial Data API",
+ "version": "0.1.0",
+ "description": "Financial data API for Python and the command line: stock quotes, crypto prices, DeFi TVL, ECB exchange rates, LEI records and SEC EDGAR filings in one client, with one sign-in and the same JSON or CSV rows for every source. Free and open source; runs on your QuanticData account.",
+ "links": {
+  "repo": "https://github.com/quantumproxies/financial-data-api",
+  "page": "https://quanticdata.io/collectors/marketwatch-api/?utm_source=github&utm_medium=cli&utm_campaign=financial-data-api",
+  "billing": "https://app.quanticdata.io/billing?utm_source=github&utm_medium=cli&utm_campaign=financial-data-api",
+  "pricing": "https://quanticdata.io/pricing/?utm_source=github&utm_medium=cli&utm_campaign=financial-data-api"
+ },
+ "commands": [
+  {
+   "name": "marketwatch",
+   "collector": "marketwatch_quote",
+   "method": "marketwatch",
+   "help": "stock quotes from MarketWatch by ticker",
+   "description": "Latest quote per US ticker from MarketWatch: price, change, session, day and 52-week range, volume, market cap, P/E and EPS, with the time the quote is from.",
+   "positional": "tickers",
+   "positional_is_list": true,
+   "positional_optional": false,
+   "columns": [
+    "ticker",
+    "name",
+    "price",
+    "change_percent",
+    "session",
+    "quote_time",
+    "market_cap"
+   ],
+   "sample": "marketwatch_quote",
+   "inputs": [
+    {
+     "name": "tickers",
+     "type": "string[]",
+     "required": true,
+     "description": "US-listed ticker symbols as MarketWatch spells them, e.g. AAPL MSFT BRK.B.",
+     "arg": "tickers"
+    },
+    {
+     "name": "country",
+     "type": "string",
+     "required": false,
+     "description": "Country to run the request from, as an ISO 3166-1 alpha-2 code (us, gb, de...).",
+     "arg": "country"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many quotes to deliver at most (1–25). You pay only for delivered quotes.",
+     "min": 1,
+     "max": 25,
+     "default": 10,
+     "arg": "max_results"
+    }
+   ]
+  },
+  {
+   "name": "crypto",
+   "collector": "coingecko_coins",
+   "method": "crypto",
+   "help": "crypto market data from CoinGecko, by coin id or ranking",
+   "description": "Crypto market rows from CoinGecko, for chosen coins or in market-cap order: price, market cap, volume, 24-hour range and change, supply and all-time high and low.",
+   "positional": "coin_ids",
+   "positional_is_list": true,
+   "positional_optional": true,
+   "columns": [
+    "symbol",
+    "name",
+    "price",
+    "currency",
+    "change_24h_pct",
+    "market_cap",
+    "market_cap_rank"
+   ],
+   "sample": "coingecko_coins",
+   "inputs": [
+    {
+     "name": "vs_currency",
+     "type": "string",
+     "required": false,
+     "description": "Quote currency: usd, eur, btc...",
+     "default": "usd",
+     "arg": "vs_currency"
+    },
+    {
+     "name": "coin_ids",
+     "type": "string[]",
+     "required": false,
+     "description": "CoinGecko coin ids, e.g. bitcoin ethereum solana. Omit them for the market-cap ranking.",
+     "arg": "coin_ids"
+    },
+    {
+     "name": "category",
+     "type": "string",
+     "required": false,
+     "description": "Only coins of this CoinGecko category, e.g. stablecoins or meme-token.",
+     "arg": "category"
+    },
+    {
+     "name": "order",
+     "type": "string",
+     "required": false,
+     "description": "Sort order (default market_cap_desc).",
+     "enum": [
+      "market_cap_desc",
+      "market_cap_asc",
+      "volume_desc",
+      "volume_asc",
+      "id_asc",
+      "id_desc"
+     ],
+     "default": "market_cap_desc",
+     "arg": "order"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many coins to deliver at most (1–250). You pay only for delivered coins.",
+     "min": 1,
+     "max": 250,
+     "default": 50,
+     "arg": "max_results"
+    }
+   ]
+  },
+  {
+   "name": "defi",
+   "collector": "defillama",
+   "method": "defi",
+   "help": "DeFi total value locked per chain from DefiLlama",
+   "description": "Total value locked per blockchain from DefiLlama, in USD, with its rank and share across all chains, the native token and the chain's CoinGecko and CoinMarketCap ids.",
+   "positional": "chains",
+   "positional_is_list": true,
+   "positional_optional": true,
+   "columns": [
+    "tvl_rank",
+    "chain",
+    "tvl",
+    "tvl_share_pct",
+    "token_symbol"
+   ],
+   "sample": "defillama",
+   "inputs": [
+    {
+     "name": "chains",
+     "type": "string[]",
+     "required": false,
+     "description": "Chain names, e.g. Ethereum Solana Arbitrum. Omit them for every chain, ranked by TVL.",
+     "arg": "chains"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many chains to deliver at most (1–200). You pay only for delivered chains.",
+     "min": 1,
+     "max": 200,
+     "default": 50,
+     "arg": "max_results"
+    }
+   ]
+  },
+  {
+   "name": "fx",
+   "collector": "exchange_rates",
+   "method": "fx",
+   "help": "foreign-exchange rates from ECB reference data",
+   "description": "Foreign-exchange rates from the European Central Bank reference data, latest or for a past date, one row per target currency with the inverse rate.",
+   "positional": "base",
+   "positional_is_list": false,
+   "positional_optional": true,
+   "columns": [
+    "base",
+    "currency",
+    "rate",
+    "inverse_rate",
+    "date"
+   ],
+   "sample": "exchange_rates",
+   "inputs": [
+    {
+     "name": "base",
+     "type": "string",
+     "required": false,
+     "description": "Base currency, 3 letters, e.g. EUR (default USD).",
+     "default": "USD",
+     "arg": "base"
+    },
+    {
+     "name": "symbols",
+     "type": "string[]",
+     "required": false,
+     "description": "Target currencies, e.g. USD GBP JPY. Omit them for every currency available.",
+     "arg": "symbols"
+    },
+    {
+     "name": "date",
+     "type": "string",
+     "required": false,
+     "description": "A past date, YYYY-MM-DD; omit it for the latest rates.",
+     "arg": "date"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many currencies to deliver at most (1–50). You pay only for delivered currencies.",
+     "min": 1,
+     "max": 50,
+     "default": 40,
+     "arg": "max_results"
+    }
+   ]
+  },
+  {
+   "name": "lei",
+   "collector": "gleif_lei",
+   "method": "lei",
+   "help": "Legal Entity Identifier records from GLEIF",
+   "description": "LEI records from GLEIF, by legal name or exact LEI: legal name and other names, entity and registration status, legal and headquarters addresses, legal form, register number, BIC codes and renewal date.",
+   "positional": "query",
+   "positional_is_list": false,
+   "positional_optional": false,
+   "columns": [
+    "lei",
+    "legal_name",
+    "status",
+    "registration_status",
+    "legal_country",
+    "hq_city"
+   ],
+   "sample": "gleif_lei",
+   "inputs": [
+    {
+     "name": "query",
+     "type": "string",
+     "required": true,
+     "description": "Legal name to search, e.g. \"Apple Inc\", or an exact 20-character LEI.",
+     "arg": "query"
+    },
+    {
+     "name": "country",
+     "type": "string",
+     "required": false,
+     "description": "Limit to entities whose legal address is in this country (ISO 3166-1 alpha-2).",
+     "arg": "country"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many entities to deliver at most (1–100). You pay only for delivered entities.",
+     "min": 1,
+     "max": 100,
+     "default": 25,
+     "arg": "max_results"
+    }
+   ]
+  },
+  {
+   "name": "sec",
+   "collector": "sec_filings",
+   "method": "sec",
+   "help": "SEC EDGAR filings by full-text search or company",
+   "description": "SEC EDGAR filings: full-text search across every filing, or one company's filing history by ticker or CIK, with form, dates, accession number and links to the document and its index.",
+   "positional": "query",
+   "positional_is_list": false,
+   "positional_optional": true,
+   "columns": [
+    "filed_date",
+    "form",
+    "company_name",
+    "ticker",
+    "report_date",
+    "accession"
+   ],
+   "sample": "sec_filings",
+   "inputs": [
+    {
+     "name": "query",
+     "type": "string",
+     "required": false,
+     "description": "Full-text search across every filing, e.g. \"artificial intelligence risk factors\". Use this or --ticker / --cik.",
+     "arg": "query"
+    },
+    {
+     "name": "ticker",
+     "type": "string",
+     "required": false,
+     "description": "Company ticker, e.g. AAPL, for that company's filing history.",
+     "arg": "ticker"
+    },
+    {
+     "name": "cik",
+     "type": "string",
+     "required": false,
+     "description": "SEC Central Index Key, e.g. 320193, instead of a ticker.",
+     "arg": "cik"
+    },
+    {
+     "name": "forms",
+     "type": "string",
+     "required": false,
+     "description": "Filter to a form type, e.g. 10-K, 8-K, S-1. Comma-separate several: 10-K,10-Q.",
+     "arg": "forms"
+    },
+    {
+     "name": "date_from",
+     "type": "string",
+     "required": false,
+     "description": "Earliest filing date, YYYY-MM-DD.",
+     "arg": "date_from"
+    },
+    {
+     "name": "date_to",
+     "type": "string",
+     "required": false,
+     "description": "Latest filing date, YYYY-MM-DD.",
+     "arg": "date_to"
+    },
+    {
+     "name": "max_results",
+     "type": "integer",
+     "required": false,
+     "description": "How many filings to deliver at most (1–100). You pay only for delivered filings.",
+     "min": 1,
+     "max": 100,
+     "default": 20,
+     "arg": "max_results"
+    }
+   ]
+  }
+ ]
+}

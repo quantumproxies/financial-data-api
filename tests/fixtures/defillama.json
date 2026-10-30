@@ -1,0 +1,53 @@
+{
+ "run_id": "cmvksn5ah0uc741o59wd0m8ua",
+ "slug": "defillama",
+ "version": "1.1.0",
+ "status": "done",
+ "input": {
+  "chains": [
+   "Ethereum",
+   "Solana",
+   "Arbitrum"
+  ],
+  "max_results": 3
+ },
+ "count": 3,
+ "partial": false,
+ "finished_at": "2026-10-23T09:54:55.918Z",
+ "results": [
+  {
+   "tvl": 49593412302,
+   "rank": 1,
+   "chain": "Ethereum",
+   "cmc_id": "1027",
+   "chain_id": 1,
+   "gecko_id": "ethereum",
+   "tvl_rank": 1,
+   "token_symbol": "ETH",
+   "tvl_share_pct": 54.82
+  },
+  {
+   "tvl": 5864784465,
+   "rank": 2,
+   "chain": "Solana",
+   "cmc_id": "5426",
+   "chain_id": null,
+   "gecko_id": "solana",
+   "tvl_rank": 3,
+   "token_symbol": "SOL",
+   "tvl_share_pct": 6.48
+  },
+  {
+   "tvl": 1459709337,
+   "rank": 3,
+   "chain": "Arbitrum",
+   "cmc_id": "11841",
+   "chain_id": 42161,
+   "gecko_id": "arbitrum",
+   "tvl_rank": 8,
+   "token_symbol": "ARB",
+   "tvl_share_pct": 1.61
+  }
+ ],
+ "_note": "Real run of 2026-10-23 filtered to three chains (tvl_rank is the rank across every chain); all three rows kept as delivered."
+}
